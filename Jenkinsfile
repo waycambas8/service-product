@@ -1,6 +1,7 @@
 def gitUrl = "https://github.com/waycambas8/service-product.git"
 def service = "service-product-app"
 def serviceNginx = "service-product-nginx"
+def directory = "service-product"
 
 pipeline {
     agent any
@@ -23,7 +24,7 @@ pipeline {
                 sshagent(['ssh-app']) {
                     sh """
                         ssh -o StrictHostKeyChecking=no ec2-user@13.250.52.15 "
-                            cd fazz && git pull origin main && sudo chmod -Rf 777 storage/
+                            cd ${directory} && git pull origin main && sudo chmod -Rf 777 storage/
                             docker-compose -f .docker/compose-dev.yml run --rm app composer install
                             docker-compose -f .docker/compose-dev.yml run --rm app php artisan key:generate
 
