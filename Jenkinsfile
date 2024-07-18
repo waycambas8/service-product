@@ -28,7 +28,7 @@ pipeline {
                             docker-compose -f .docker/development-compose.yml run --rm app composer install
                             docker-compose -f .docker/development-compose.yml run --rm app php artisan key:generate
 
-                            docker-compose -f .docker/compose-dev.yml up -d --build
+                            docker-compose -f .docker/development-compose.yml up -d --build
                         "
                     """
                 }
