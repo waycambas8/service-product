@@ -1,0 +1,41 @@
+version: "3.1"
+
+services:
+  app:
+    container_name: service-product-app
+    build:
+      context: ../
+      dockerfile: .docker/Dockerfile
+    image: satellite-images
+    networks:
+      - service-product
+    volumes:
+      - ../:/usr/share/app
+      - ./config/php.ini/upload.ini:/usr/local/etc/php/conf.d/upload.ini
+    environment:
+      - ENVIRONMENT=development
+
+  nginx:
+    container_name: service-product-nginx
+    image: nginx
+    env_file:
+      - ../.env
+    restart: always
+    networks:
+      - service-product
+    links:
+      - app
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./etc/nginx/conf.d:/etc/nginx/conf.d
+      - ./etc/nginx/servers:/etc/nginx/servers
+      - ./keys/nginx:/keys
+      - ../:/usr/share/app
+
+networks:
+  service-product: {}
