@@ -25,8 +25,8 @@ pipeline {
                     sh """
                         ssh -o StrictHostKeyChecking=no ec2-user@13.250.52.15 "
                             cd ${directory} && git pull origin main && sudo chmod -Rf 777 storage/
-                            docker-compose -f .docker/compose-dev.yml run --rm app composer install
-                            docker-compose -f .docker/compose-dev.yml run --rm app php artisan key:generate
+                            docker-compose -f .docker/development-compose.yml run --rm app composer install
+                            docker-compose -f .docker/development-compose.yml run --rm app php artisan key:generate
 
                             docker-compose -f .docker/compose-dev.yml up -d --build
                         "
