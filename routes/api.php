@@ -16,17 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 $Service = 'product';
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::get('', function () {
-    return response()->json([
-        'msg' => 'Beep Beep Service Product is online'
-    ]);
-});
-
 Route::group([
-    'prefix' => "$Service"
-], function ($router) {
+    'prefix' => $Service
+], function () {
+    Route::get('', function () {
+        return response()->json([
+            'msg' => 'Beep Beep Service Product is online'
+        ]);
+    });
 });
