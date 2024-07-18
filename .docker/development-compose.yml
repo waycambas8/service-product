@@ -1,7 +1,7 @@
 version: "3.1"
 
 services:
-  app:
+  app-product:
     container_name: service-product-app
     build:
       context: ../
@@ -15,7 +15,7 @@ services:
     environment:
       - ENVIRONMENT=development
 
-  nginx:
+  nginx-product:
     container_name: service-product-nginx
     image: nginx
     env_file:
@@ -24,12 +24,11 @@ services:
     networks:
       - service-product
     links:
-      - app
+      - app-product
     depends_on:
-      - app
+      - app-product
     ports:
       - "8081:80"
-      - "443:443"
     volumes:
       - ./etc/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./etc/nginx/conf.d:/etc/nginx/conf.d
