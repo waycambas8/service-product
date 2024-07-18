@@ -28,7 +28,6 @@ pipeline {
                             docker-compose -f .docker/compose-dev.yml run --rm app composer install
                             docker-compose -f .docker/compose-dev.yml run --rm app php artisan key:generate
 
-                            docker rm -f ${service} ${serviceNginx}
                             docker-compose -f .docker/compose-dev.yml up -d --build
                         "
                     """
