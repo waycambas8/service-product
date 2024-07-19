@@ -24,4 +24,27 @@ Route::group([
             'msg' => 'Beep Beep Service Products is online'
         ]);
     });
+
+    Route::get('/list', function () {
+        return response()->json([
+            'data' => [
+                [
+                    'name' => 'Joen Doe',
+                    'class' => 'IPA B',
+                ],
+                [
+                    'name' => 'Ginanjar Putra',
+                    'class' => 'IPA B',
+                ],
+                [
+                    'name' => 'Kiara Putri Lestari',
+                    'class' => 'IPA B',
+                ],
+                [
+                    'name' => 'Serena',
+                    'class' => 'IPA B',
+                ],
+            ]
+        ])
+    });
 });
