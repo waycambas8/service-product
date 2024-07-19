@@ -45,6 +45,6 @@ Route::group([
                     'class' => 'IPA B',
                 ],
             ]
-        ])
+        ]);
     });
 });
