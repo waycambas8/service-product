@@ -29,7 +29,7 @@ Route::group([
         return response()->json([
             'data' => [
                 [
-                    'name' => 'Joen Doe',
+                    'name' => 'Joen Does',
                     'class' => 'IPA B',
                 ],
                 [
